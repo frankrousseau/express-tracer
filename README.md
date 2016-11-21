@@ -1,22 +1,29 @@
-# express-trace
+# express-tracing
 
 Express-trace allows you to follow and inspect the
 behaviour of your controllers through the response object.  It requires that
 you instrument your application with tracers. Then you can simply call a
 `trace` method on your response object each time you want to record something.
 
-Build status: [![Build Status](https://travis-ci.org/frankrousseau/express-trace.png?branch=master)](https://travis-ci.org/frankrousseau/express-trace)
+Build status: [![Build Status](https://travis-ci.org/frankrousseau/express-tracing.png?branch=master)](https://travis-ci.org/frankrousseau/express-tracing)
 
 ## Usage 
+
+Install it in your project
+
+```bash
+npm install express-tracing
+```
 
 To add tracing helpers to express, run this module on your express app.
 Then, configure your tracers at the application level. You're done! Now, each
 time you want to trace something, call the dedicated function on the response
-object
+object.
+
 
 ```javascript
 var express = require('express')
-var expressTrace = require('express-trace')
+var expressTrace = require('express-tracing')
 var debug = require('debug')('trace:response')
 
 var app = express()
@@ -35,7 +42,7 @@ app.get('/', function (req, res){
 
 ## Contributing
 
-To discuss anything on this project, open an [issue](https://github.com/frankrousseau/express-trace/issues).
+To discuss anything on this project, open an [issue](https://github.com/frankrousseau/express-tracing/issues).
 
 Of course, any code contribution is welcome! To propose your patch make a pull
 request on the master branch and make sure the Travis tests succeed. If you

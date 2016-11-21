@@ -1,5 +1,4 @@
 {
-  "name": "express-trace",
   "version": "0.1.0",
   "description": "Tracing helpers for ExpressJS",
   "main": "index.js",
@@ -9,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frankrousseau/express-trace.git"
+    "url": "git+https://github.com/frankrousseau/express-tracing.git"
   },
   "keywords": [
     "trace",
@@ -20,9 +19,9 @@
   "author": "Frank Rousseau",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/frankrousseau/express-trace/issues"
+    "url": "https://github.com/frankrousseau/express-tracing/issues"
   },
-  "homepage": "https://github.com/frankrousseau/express-trace#readme",
+  "homepage": "https://github.com/frankrousseau/express-tracing#readme",
   "devDependencies": {
     "eslint": "3.10.2",
     "express": "4.14.0",
