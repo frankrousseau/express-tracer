@@ -9,7 +9,7 @@ describe('app', function(){
       var app = express();
       expressTrace(app);
       function debug (options) {
-        console.log(options.event);
+        return options.event;
       }
       app.instrument(debug);
       assert.equal(debug, app.tracers[0]);

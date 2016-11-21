@@ -22,7 +22,7 @@ function instrument (tracer){
     throw new TypeError('instrument expects a function');
   this.tracers.push(tracer);
   return this;
-};
+}
 
 
 /*
@@ -52,7 +52,7 @@ function callTracers(res, event, args){
   for (var i = 0; i < length; i++) {
     tracers[i](options);
   }
-};
+}
 
 
 /**
@@ -79,10 +79,10 @@ function trace(event) {
   }
   this.app.callTracers(this, event, args);
   return this;
-};
+}
 
 
-/* Add helpers to Express JS. */
+/* Add helpers to Express JS. */
 module.exports = function configureExpressApp (app) {
   app.tracers = [];
   app.instrument = instrument;

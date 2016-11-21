@@ -5,6 +5,9 @@ node_js:
     - "0.12"
     - "4.4"
     - "6.2"
+script:
+    - npm test
+    - npm run lint
 branches:
     only:
         - master

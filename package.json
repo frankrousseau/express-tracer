@@ -4,7 +4,8 @@
   "description": "Tracing helpers for ExpressJS",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --colors"
+    "test": "mocha --reporter spec --colors",
+    "lint": "node_modules/.bin/eslint index.js test/*"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/frankrousseau/express-trace#readme",
   "devDependencies": {
+    "eslint": "3.10.2",
     "express": "4.14.0",
     "mocha": "3.1.2",
     "supertest": "2.0.1"
