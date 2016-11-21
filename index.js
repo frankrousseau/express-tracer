@@ -1,3 +1,6 @@
+/* Helpers to make Express JS tracing easier */
+
+
 /*
  * Set a tracer at the application level. Tracer will be activated when a
  * tracing call will be fired by a response.
@@ -14,7 +17,6 @@
  * @param {function} The tracer to set.
  * @return {app} for chaining.
  */
-
 function instrument (tracer){
   if (tracer === undefined || typeof tracer !== 'function')
     throw new TypeError('instrument expects a function');
@@ -32,7 +34,6 @@ function instrument (tracer){
  * @param {Event} The event to trace.
  * @param {Array} Arguments to transmit to the tracker.
  */
-
 function callTracers(res, event, args){
   var date = new Date();
   var app = this;
@@ -62,7 +63,6 @@ function callTracers(res, event, args){
  * @param {function} event The event to trace.
  * @return {ServerResponse} for chaining
  */
-
 function trace(event) {
   var args;
   switch (arguments.length) {
@@ -82,11 +82,13 @@ function trace(event) {
 };
 
 
+/* Add helpers to Express JS. */
 module.exports = function configureExpressApp (app) {
   app.tracers = [];
   app.instrument = instrument;
   app.callTracers = callTracers;
   app.response.__proto__.trace = trace;
+
   app.on('mount', function onAppMounted(parent) {
     app.instrument(function callParentTracer(options) {
       parent.callTracers(options.res, options.event, options.args);
