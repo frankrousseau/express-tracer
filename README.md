@@ -1,16 +1,20 @@
 # express-trace
 
-Tracing helpers for ExpressJS
+Express-trace allows you to follow and inspect the
+behaviour of your controllers through the response object.  It requires that
+you instrument your application with tracers. Then you can simply call a
+`trace` method on your response object each time you want to record something.
 
 Build status: [![Build Status](https://travis-ci.org/frankrousseau/express-trace.png?branch=master)](https://travis-ci.org/frankrousseau/express-trace)
 
 ## Usage 
 
-To bring tracing helpers to express simply run this module on your express app.
-Then configure your tracers at the application level. Finally each time you
-want to trace something, call the dedicated function on the response object
+To add tracing helpers to express, run this module on your express app.
+Then, configure your tracers at the application level. You're done! Now, each
+time you want to trace something, call the dedicated function on the response
+object
 
-```
+```javascript
 var express = require('express')
 var expressTrace = require('express-trace')
 var debug = require('debug')('trace:response')
@@ -33,14 +37,15 @@ app.get('/', function (req, res){
 
 To discuss anything on this project, open an [issue](https://github.com/frankrousseau/express-trace/issues).
 
-Any code contribution is welcome. To propose your patch make a pull request on
-the master branch and make sure the Travis tests succeed. If you can't manage
-to make the tests green, don't worry we'll figure out a way to merge your
-changes!
+Of course, any code contribution is welcome! To propose your patch make a pull
+request on the master branch and make sure the Travis tests succeed. If you
+can't manage to make the tests green, don't worry we'll figure out a way to
+merge your changes!
 
 ### Contributor list
 
 * Frank Rousseau
+
 
 ## Documentation
 
@@ -67,7 +72,8 @@ For example:
 app.instrument(function(options){
   debug(options.event + ' ' + options.date + ' ' + options.argv[0]);
 });
-`
+```
+
 #### res.trace(event, [parameters])
 
 Fire all tracers instrumented at the application level.
@@ -87,17 +93,13 @@ app.get('/', function(req, res){
 
 ### Use cases
 
-Express-trace allows you to follow and inspect the
-behaviour of your controllers through the response object.  It requires that
-you instrument your application with tracers. Then you can simply call a
-`trace` method on your response object each time you want to record something.
 
 ### Example 1: Time interval
 
 In some cases you, may want to capture time spent on a specific request. Here
 is a way to do it through tracing.
 
-```
+```js
 var express = require('express');
 var debug = require('debug')('trace:response');
 
@@ -127,13 +129,13 @@ app.get('/', function (req, res){
 })
 ```
 
-### Example 3: Send information to dtrace.
+### Example 2: Send information to dtrace.
 
 Dtrace is a common tool for tracing. It generates probes that will listen and
 report any event targeted to it. You can simply reach the probe via the trace
 function.
 
-```
+```js
 var express = require('express');
 var dtrace = require('dtrace-provider');
 
@@ -161,11 +163,11 @@ app.get('/', function (req, res){
 app.listen(3000);
 ```
 
-### Example 4: Send information to chrome tracer.
+### Example 3: Send information to chrome tracer.
 
 You may want to use the chrome tracer to analyze only some response behaviour.
 
-```
+```js
 var express = require('./index');
 var app = express();
 
