@@ -1,0 +1,30 @@
+{
+  "name": "express-trace",
+  "version": "0.1.0",
+  "description": "Tracing helpers for ExpressJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankrousseau/express-trace.git"
+  },
+  "keywords": [
+    "trace",
+    "debug",
+    "api",
+    "express"
+  ],
+  "author": "Frank Rousseau",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frankrousseau/express-trace/issues"
+  },
+  "homepage": "https://github.com/frankrousseau/express-trace#readme",
+  "devDependencies": {
+    "express": "4.14.0",
+    "mocha": "3.1.2",
+    "supertest": "2.0.1"
+  }
+}
