@@ -3,11 +3,11 @@ sudo: false
 node_js:
     - "0.10"
     - "0.12"
-	- "4.4"
-	- "6.2"
+    - "4.4"
+    - "6.2"
 branches:
     only:
-		- master
+        - master
 cache:
-      directories:
-          - node_modules
+    directories:
+        - node_modules
