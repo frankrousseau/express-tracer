@@ -1,23 +1,28 @@
 # express-tracer
 
-Express-trace allows you to follow and inspect the
-behaviour of your controllers through the response object.  It requires that
-you instrument your application with tracers. Then you can simply call a
-`trace` method on your response object each time you want to record something.
+Express-tracer allows you to follow and inspect the behaviour of your
+controllers through the response object. It provides helpers to instrument your
+Express application with tracers.  Via a `trace` method on the response
+object, you can activate them each time you want to record something.
+
+Extension:
+
+*  [DTrace with chrome tracing](https://github.com/No9/dtrace-express)
+
 
 Build status: [![Build Status](https://travis-ci.org/frankrousseau/express-tracer.png?branch=master)](https://travis-ci.org/frankrousseau/express-tracer)
 
 ## Usage 
 
-Install it in your project
+First, add the dependency to your project:
 
 ```bash
 npm install express-tracer
 ```
 
-To add tracing helpers to express, run this module on your express app.
-Then, configure your tracers at the application level. You're done! Now, each
-time you want to trace something, call the dedicated function on the response
+Then add tracing helpers to express by running this module on your express app.
+Once done, you can configure your tracers at the application level. Now, each
+time you want to trace something, call the `trace` function on the response
 object.
 
 
@@ -63,8 +68,8 @@ merge your changes!
 Add a tracer to the application object. This tracer will be activated each time
 the `trace` method of a response is called.
 
-A tracer is a function which takes an options object as argument. It has the
-following field:
+A tracer is a function which takes an options object as argument containing 
+the following fields:
 
 * `res`: Response that fired the tracing.
 * `req`: Request related to the response that fired the tracing.
@@ -108,10 +113,13 @@ is a way to do it through tracing.
 
 ```js
 var express = require('express');
+var expressTracer = require('express-tracer');
 var debug = require('debug')('trace:response');
 
 var app = express();
 var responseTime = {};
+
+expressTracer(app);
 
 app.instrument(function (options){
   if (options.event === 'duration:start') {
@@ -134,6 +142,8 @@ app.get('/', function (req, res){
   res.send('hello world');
   res.trace('duration:end');
 })
+
+app.listen(3000);
 ```
 
 ### Example 2: Send information to dtrace.
@@ -144,9 +154,11 @@ function.
 
 ```js
 var express = require('express');
+var expressTracer = require('express-tracer');
 var dtrace = require('dtrace-provider');
 
 var app = express();
+expressTracer(app);
 
 var dtp = dtrace.createDTraceProvider("nodeapp");
 var p1 = dtp.addProbe("probe1", "char *", "char *");
@@ -172,11 +184,14 @@ app.listen(3000);
 
 ### Example 3: Send information to chrome tracer.
 
-You may want to use the chrome tracer to analyze only some response behaviour.
+You may want to use the chrome tracer to analyze some response behaviour.
 
 ```js
 var express = require('./index');
+var expressTracer = require('express-tracer');
+
 var app = express();
+expressTracer(app);
 
 var events = [];
 
