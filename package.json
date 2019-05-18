@@ -1,6 +1,6 @@
 {
   "name": "express-tracer",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Tracing helpers for ExpressJS",
   "main": "index.js",
   "scripts": {
